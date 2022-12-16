@@ -2,7 +2,7 @@ import json
 import os
 import pathlib
 
-from fastapi import FastAPI, File, UploadFile, Form, Request, Body
+from fastapi import FastAPI, Form, Request, Body
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
@@ -10,7 +10,6 @@ from pydantic import BaseModel
 from typing import Union, List
 
 import uvicorn
-import base64
 import yaml
 
 app = FastAPI(debug=True)
@@ -36,6 +35,9 @@ class Keyword(BaseModel):
 #     config = get_status_config()
 
 #     return {"status": config['model_status'], "error": ""}
+
+
+@app
 
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 

@@ -3,11 +3,82 @@
 <head>
     <meta charset="utf-8">
     <title></title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="./main.css">
     <script type="text/javascript" src="./main.js"></script>
 </head>
 <body>
-
+<div class="container">
+    <div class="row">
+        <h1 class="h3 text-center text-primary"> Собери свой пакет акций</h1>
+        <div class="col-6">
+            <form>
+                <div class="form-group">
+                    <label for="riskSelect">Выберите уровень риска</label>
+                    <select class="form-control" id="riskSelect">
+                        <option>Низкий</option>
+                        <option>Средний</option>
+                        <option>Высокий</option>
+                        <option>Очень высокий</option>
+                    </select>
+                </div>
+                 <div class="form-group">
+                    <label for="periodSelect">Выберите период</label>
+                    <select class="form-control" id="periodSelect">
+                        <option>Неделя</option>
+                        <option>2 недели</option>
+                        <option>Месяц</option>
+                        <option>2 месяца</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sharesAdvised">Выберите акции</label>
+                    <select multiple class="form-control " id="sharesAdvised">
+                        <option>VSMO</option>
+                        <option>LNZL</option>
+                        <option>GMKN</option>
+                        <option>AKRN</option>
+                        <option>VSYDP</option>
+                        <option>VJGZ</option>
+                        <option>CHMF</option>
+                        <option>SFIN</option>
+                        <option>AVAN</option>
+                        <option>SVAV</option>
+                        <option>GAZAP</option>
+                        <option>KAZTP</option>
+                        <option>SBERP</option>
+                        <option>LNZLP</option>
+                        <option>TATN</option>
+                    </select>
+                </div>
+                <div class="mt-2 col-md-12">
+                    <button type="button" class="btn btn-primary">Подобрать акции</button>
+                </div>
+            </form>
+            <div class="mt-2 col-md-12">
+                <ul class="list-group">
+                    <li class="list-group-item">VSMO <span class="badge bg-black">100</span></li>
+                    <li class="list-group-item">LNZL <span class="badge bg-black">100</span></li>
+                    <li class="list-group-item">GMKN <span class="badge bg-black">100</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-4">
+            <ul class="list-group">
+                <li class="list-group-item">VSMO 47520  <span class="badge bg-danger">-120</span></li>
+                <li class="list-group-item">LNZL 14370 <span class="badge bg-danger">-960</span></li>
+                <li class="list-group-item">GMKN 14282 <span class="badge bg-primary">+136</span> </li>
+                <li class="list-group-item">AKRN 17998 <span class="badge bg-primary">+48</span> </li>
+                <li class="list-group-item">VSYDP 4480 <span class="badge bg-primary">+40</span></li>
+                <li class="list-group-item">PLZL 7463 <span class="badge bg-primary">+232</span></li>
+                <li class="list-group-item">MGNT 4382 <span class="badge bg-danger">-48</span></li>
+                <li class="list-group-item">KRKNP 10160 <span class="badge bg-primary">0</span></li>
+                <li class="list-group-item">KOGK 33800 <span class="badge bg-primary"> +400</span></li>
+                <li class="list-group-item">TRNFP 84050 <span class="badge bg-danger">-1250</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
 </body>
 </html>
