@@ -12,6 +12,8 @@ from typing import Union, List
 import uvicorn
 import yaml
 
+from data_analysis import diff_data_range
+
 app = FastAPI(debug=True)
 
 origins = ["*"]
@@ -25,16 +27,35 @@ app.add_middleware(
 )
 
 
-class Keyword(BaseModel):
-    keyword: str
+class FormPost(BaseModel):
+    risk: str
+    period: str
+    selectedShares: List[str]
 
 
-# @app.post("/fit")
-# def fit_model(keyword: Keyword):
-#     start_training(keyword.keyword)
-#     config = get_status_config()
+def return_resp_shares():
+    return {"VSMO ": 150, "LNZL ": 150, "GMKN ": 150, "AAA ": 150}
 
-#     return {"status": config['model_status'], "error": ""}
+def return_shares_adviced():
+    return {"shares": ["VSMO", "LNZL", "GMKN", "AKRN", "VSYDP", "VJGZ", "CHMF", "SFIN", "AVAN", "SVAV",\
+                       "GAZAP", "KAZTP", "SBERP", "LNZLP", "TATN"]}
+
+def return_shares_last():
+    return {"VSMO": [47520, -120], "LNZL": [14370, -960], "GMKN": [14282, 136], "AKRN": [17998, 48], "VSYDP": [4480, 40], \
+            "PLZL": [7463, 232], "MGNT": [4382, -48], "KRKNP": [10160, 0], "KOGK": [33800, 400], "TRNFP": [84050, -1250]}
+
+
+@app.get("/get_shares_last")
+def get_shares_last():
+    return return_shares_last()
+@app.get("/get_advised")
+def get_advised():
+    return return_shares_adviced()
+
+@app.post("/form_post")
+def fit_model(form_post: FormPost):
+
+    return return_resp_shares()
 
 
 @app.get("/status")
