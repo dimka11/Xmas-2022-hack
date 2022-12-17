@@ -39,14 +39,14 @@ def get_end_date():
     return end_date.strftime('%Y-%m-%d')
 
 
-def get_start_date(minus_days=7):  # 14 # 21 # 27
+def get_start_date(minus_days=7):  # 7 14 21 27
     today = datetime.today()
     end_date = today - timedelta(days=3)
     start_date = end_date - timedelta(days=minus_days)
     return start_date.strftime('%Y-%m-%d')
 
-def get_last_week_date():
 
+def get_last_week_date():
     shares_lm = pd.read_csv('./data/shares_lm.csv')
 
     top_5_last_week = diff_data_range(start_date='2022-12-05', end_date='2022-12-12').head(5)
@@ -58,3 +58,16 @@ def get_last_week_date():
         last_week_dict.update({i: [int(shares_lm[shares_lm['code'] == i].tail(1)['close'].values[0]), int(items)]})
     return last_week_dict
 
+
+def filter_data(data, num=-100):
+    shares_lm = pd.read_csv('./data/shares_lm.csv')
+
+    shares_lm['datetime'] = pd.to_datetime(shares_lm['datetime'])
+    grb_res = shares_lm.groupby(['code', shares_lm['datetime'].dt.date]).mean().diff()[
+        shares_lm.groupby(['code', shares_lm['datetime'].dt.date]).mean().diff() < 0].groupby(['code']).mean()['vol']
+    for i, item in data.iteritems():
+        if grb_res[i] < num:
+            print(grb_res[i])
+            data.drop(i, inplace=True)
+
+    return data

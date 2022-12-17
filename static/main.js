@@ -33,7 +33,7 @@ function get_shares_last() {
 
                 if (resp[item][1] >= 0) {
                     span.setAttribute("class", "badge bg-primary")
-                    span.appendChild(document.createTextNode("-" + resp[item][1]))
+                    span.appendChild(document.createTextNode("+" + resp[item][1]))
                 } else {
                     span.setAttribute("class", "badge bg-danger")
                     span.appendChild(document.createTextNode(resp[item][1]))
@@ -159,7 +159,7 @@ function updateRespList(resp) {
             const ul = document.getElementById("respList");
             const li = document.createElement("li");
             const span = document.createElement("span");
-            li.appendChild(document.createTextNode(key));
+            li.appendChild(document.createTextNode(key + " "));
             li.setAttribute("class", "list-group-item");
             span.setAttribute("class", "badge bg-black");
             span.appendChild(document.createTextNode(resp[key]));
@@ -167,20 +167,6 @@ function updateRespList(resp) {
             ul.appendChild(li);
         }
     }
-
-
-    // for (const property in resp) {
-    //     console.log(resp[property])
-    // const ul = document.getElementById("respList");
-    // const li = document.createElement("li");
-    // const span = document.createElement("span");
-    // li.appendChild(document.createTextNode(property));
-    // li.setAttribute("class", "list-group-item");
-    // span.setAttribute("class", "badge bg-black");
-    // span.appendChild(document.createTextNode(resp[property]));
-    // li.appendChild(span)
-    // ul.appendChild(li);
-    // }
 }
 
 
