@@ -43,7 +43,7 @@ def return_resp_shares(risk, period, shares):
     else:
         data = diff_data_range(start_date=get_start_date(27), end_date=get_end_date()).head(20)
 
-    if (risk == "Очень высокий") or (risk == "Bысокий"):
+    if (risk == "Очень высокий") or (risk == "Высокий"):
         dict_ = {}
         for i, item in data.iteritems():
             dict_.update({i: 150})
