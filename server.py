@@ -12,7 +12,7 @@ from typing import Union, List
 import uvicorn
 import yaml
 
-from data_analysis import diff_data_range
+from data_analysis import diff_data_range, get_start_date, get_end_date, get_last_week_date
 
 app = FastAPI(debug=True)
 
@@ -28,21 +28,20 @@ app.add_middleware(
 
 
 class FormPost(BaseModel):
-    risk: str
-    period: str
-    selectedShares: List[str]
+    risk: str  # 'Низкий' 'Средний' 'Высокий' 'Очень высокий'
+    period: str  # 'Неделя' '2 недели' 'Месяц' '2 месяца'
+    selectedShares: List[str]  # for filter of shares
 
 
 def return_resp_shares():
     return {"VSMO ": 150, "LNZL ": 150, "GMKN ": 150, "AAA ": 150}
 
 def return_shares_adviced():
-    return {"shares": ["VSMO", "LNZL", "GMKN", "AKRN", "VSYDP", "VJGZ", "CHMF", "SFIN", "AVAN", "SVAV",\
-                       "GAZAP", "KAZTP", "SBERP", "LNZLP", "TATN"]}
+    return {"shares": list(diff_data_range(get_start_date(2), get_end_date())[:15].index)}
+
 
 def return_shares_last():
-    return {"VSMO": [47520, -120], "LNZL": [14370, -960], "GMKN": [14282, 136], "AKRN": [17998, 48], "VSYDP": [4480, 40], \
-            "PLZL": [7463, 232], "MGNT": [4382, -48], "KRKNP": [10160, 0], "KOGK": [33800, 400], "TRNFP": [84050, -1250]}
+    return get_last_week_date()
 
 
 @app.get("/get_shares_last")

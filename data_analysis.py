@@ -1,6 +1,7 @@
 import pandas as pd
 
 import pandas as pd
+from datetime import datetime, timedelta
 import numpy as np
 import os
 import json
@@ -30,3 +31,30 @@ def diff_data_range(start_date='2022-11-21', end_date='2022-12-12', field='close
 
     if return_pandas:
         return res
+
+
+def get_end_date():
+    today = datetime.today()
+    end_date = today - timedelta(days=3)
+    return end_date.strftime('%Y-%m-%d')
+
+
+def get_start_date(minus_days=7):  # 14 # 21 # 27
+    today = datetime.today()
+    end_date = today - timedelta(days=3)
+    start_date = end_date - timedelta(days=minus_days)
+    return start_date.strftime('%Y-%m-%d')
+
+def get_last_week_date():
+
+    shares_lm = pd.read_csv('./data/shares_lm.csv')
+
+    top_5_last_week = diff_data_range(start_date='2022-12-05', end_date='2022-12-12').head(5)
+    low_5_last_week = diff_data_range(start_date='2022-12-05', end_date='2022-12-12').tail(5)
+
+    last_week_dict = {}
+
+    for i, items in pd.concat([top_5_last_week, low_5_last_week]).iteritems():
+        last_week_dict.update({i: [int(shares_lm[shares_lm['code'] == i].tail(1)['close'].values[0]), int(items)]})
+    return last_week_dict
+
