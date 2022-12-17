@@ -1,1 +1,3 @@
-# Xmas-2022-hack
+# X mas hack 2022
+
+Решение команды Zero
