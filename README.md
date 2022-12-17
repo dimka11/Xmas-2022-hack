@@ -1,3 +1,3 @@
-# X mas hack 2022
+# X - MAS Hack 2022
 
 Решение команды Zero
