@@ -37,7 +37,21 @@ class Keyword(BaseModel):
 #     return {"status": config['model_status'], "error": ""}
 
 
-@app
+@app.get("/status")
+def status():
+    return {"status": 'fine'}
+
+
+@app.get("/confirm")
+def status():
+    return {"status": 'confirmed'}
+
+
+@app.post("/post_test")
+async def post_test(request: Request):
+    json = await request.json()
+    return {'status': 'ok'}
+
 
 app.mount("/", StaticFiles(directory="static", html=True), name="static")
 
